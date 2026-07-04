@@ -1,0 +1,14 @@
+{
+  "name": "cicd-pipeline-generator",
+  "version": "1.0.0",
+  "description": "AI CI/CD Pipeline Generator for GitHub Actions",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "archiver": "^6.0.1"
+  }
+}
