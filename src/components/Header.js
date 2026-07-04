@@ -7,7 +7,8 @@ export default function Header() {
   const pathname = usePathname();
 
   const isExtension = pathname?.startsWith('/extension');
-  const isWebsite = !isExtension;
+  const isGuide = pathname?.startsWith('/guide');
+  const isWebsite = !isExtension && !isGuide;
 
   return (
     <header>
@@ -28,6 +29,12 @@ export default function Header() {
           className={`header-nav-link ${isExtension ? 'active' : ''}`}
         >
           🧩 Chrome Extension CI/CD
+        </Link>
+        <Link
+          href="/guide"
+          className={`header-nav-link ${isGuide ? 'active' : ''}`}
+        >
+          📘 How It Works
         </Link>
       </nav>
 
