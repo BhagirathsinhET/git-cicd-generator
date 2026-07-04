@@ -14,6 +14,7 @@ function generateDeployProduction(config) {
     projectType,
     packageManager = 'npm',
     deployTarget,
+    productionBranch = 'main',
     checks = [],
     deployEnvironments = [],
   } = config;
@@ -30,7 +31,7 @@ function generateDeployProduction(config) {
 
   const allSetupSteps = isPhp ? buildPhpSetupSteps(nodeVersion) : buildNodeSetupSteps({ nodeVersion, pm, installCmd });
   const checkSteps    = buildCheckSteps({ checks, isPhp, runPrefix });
-  const deploySteps   = buildDeploySteps({ deployTarget, environment: 'production' });
+  const deploySteps   = buildDeploySteps({ deployTarget, environment: 'production', branchName: productionBranch });
   const deploySetup   = buildDeploySetupSteps({ isPhp, nodeVersion, pm, installCmd, deployTarget });
 
   return `name: Deploy to Production
@@ -38,7 +39,7 @@ function generateDeployProduction(config) {
 on:
   push:
     branches:
-      - main
+      - ${productionBranch}
 
 # Never cancel a production deploy — wait for it to finish
 concurrency:

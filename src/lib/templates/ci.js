@@ -11,7 +11,10 @@ function generateCI(config) {
     projectType,
     packageManager = 'npm',
     checks = [],
-    branchFlow,
+    productionBranch = 'main',
+    stagingBranch = 'staging',
+    extraBranches = [],
+    deployEnvironments = [],
   } = config;
 
   const isPhp = projectType === 'laravel' || projectType === 'wordpress';
@@ -20,10 +23,13 @@ function generateCI(config) {
   const installCmd = getInstallCmd(pm);
   const runPrefix = pm === 'yarn' ? 'yarn' : pm === 'pnpm' ? 'pnpm' : 'npm run';
 
-  // Determine PR target branches based on branch flow
-  const prBranches = branchFlow === 'dev-staging-main'
-    ? ['dev', 'staging', 'main']
-    : ['main'];
+  // Determine PR target branches based on the user-defined branch names
+  const hasStaging = deployEnvironments.includes('staging') || deployEnvironments.includes('both');
+  const prBranches = Array.from(new Set([
+    ...extraBranches,
+    ...(hasStaging ? [stagingBranch] : []),
+    productionBranch,
+  ]));
 
   const steps = [];
 

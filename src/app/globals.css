@@ -93,6 +93,46 @@ header {
   margin-left: auto;
 }
 
+/* ── Header nav (Website / Extension switcher) ────────────────────────────── */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: 1.5rem;
+}
+
+.header-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.header-nav-link:hover {
+  color: var(--text);
+  background: var(--surface2);
+}
+
+.header-nav-link.active {
+  color: #a78bfa;
+  background: var(--accent-glow);
+  border-color: rgba(167, 139, 250, 0.3);
+}
+
+@media (max-width: 700px) {
+  header { flex-wrap: wrap; row-gap: 0.6rem; }
+  .header-nav { margin-left: 0; order: 3; width: 100%; }
+  .logo-badge { margin-left: auto; }
+}
+
 /* ── Layout ────────────────────────────────────────────────────────────── */
 .app-body {
   display: flex;
@@ -332,6 +372,106 @@ select option { background: var(--surface2); }
 .checkbox-item label:hover {
   border-color: var(--border2);
   color: var(--text);
+}
+
+/* ── Branch flow fields ────────────────────────────────────────────────── */
+.branch-flow-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.branch-flow-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.branch-flow-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  flex: 1;
+  min-width: 160px;
+}
+
+.branch-flow-field input[type="text"],
+.branch-add-row input[type="text"] {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  padding: 0.6rem 0.9rem;
+  font-size: 0.88rem;
+  font-family: var(--mono);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.branch-flow-field input[type="text"]:focus,
+.branch-add-row input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.branch-flow-extra {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.branch-flow-extra-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.branch-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.branch-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-family: var(--mono);
+  padding: 0.3em 0.4em 0.3em 0.7em;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 99px;
+  color: var(--text);
+}
+
+.branch-chip button {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 0.95rem;
+  line-height: 1;
+  padding: 0 0.15rem;
+}
+
+.branch-chip button:hover { color: var(--red); }
+
+.branch-add-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.branch-add-row input[type="text"] {
+  flex: 1;
+}
+
+.branch-add-btn {
+  font-size: 0.78rem;
+  padding: 0.5rem 0.9rem;
+  white-space: nowrap;
 }
 
 /* ── Generate button ───────────────────────────────────────────────────── */
