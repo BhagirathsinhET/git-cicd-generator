@@ -1,0 +1,37 @@
+'use client';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+export default function Header() {
+  const pathname = usePathname();
+
+  const isExtension = pathname?.startsWith('/extension');
+  const isWebsite = !isExtension;
+
+  return (
+    <header>
+      <Link className="logo" href="/website">
+        <div className="logo-icon">⚡</div>
+        CI/CD Pipeline Generator
+      </Link>
+
+      <nav className="header-nav">
+        <Link
+          href="/website"
+          className={`header-nav-link ${isWebsite ? 'active' : ''}`}
+        >
+          🌐 Website CI/CD
+        </Link>
+        <Link
+          href="/extension"
+          className={`header-nav-link ${isExtension ? 'active' : ''}`}
+        >
+          🧩 Chrome Extension CI/CD
+        </Link>
+      </nav>
+
+      <span className="logo-badge">GitHub Actions</span>
+    </header>
+  );
+}
