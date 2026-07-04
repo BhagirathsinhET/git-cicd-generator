@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function Header() {
   const pathname = usePathname();
@@ -39,6 +40,7 @@ export default function Header() {
       </nav>
 
       <span className="logo-badge">GitHub Actions</span>
+      <ThemeToggle />
     </header>
   );
 }

@@ -13,6 +13,7 @@
   --accent: #6c63ff;
   --accent-dim: #4c45cc;
   --accent-glow: rgba(108, 99, 255, 0.18);
+  --accent-text: #a78bfa;
   --green: #22c55e;
   --green-dim: #16a34a;
   --amber: #f59e0b;
@@ -25,6 +26,29 @@
   --radius: 10px;
   --sidebar-w: 300px;
   --transition: 0.18s ease;
+  color-scheme: dark;
+}
+
+/* ── Light theme overrides ─────────────────────────────────────────────── */
+:root[data-theme="light"] {
+  --bg: #f5f6fb;
+  --surface: #ffffff;
+  --surface2: #f1f2f8;
+  --surface3: #e7e9f3;
+  --border: #e1e3ee;
+  --border2: #c8cbe1;
+  --accent: #6c63ff;
+  --accent-dim: #4c45cc;
+  --accent-glow: rgba(108, 99, 255, 0.10);
+  --accent-text: #5b34da;
+  --green: #16a34a;
+  --green-dim: #15803d;
+  --amber: #b45309;
+  --red: #dc2626;
+  --text: #1b1e2b;
+  --text-muted: #565c7d;
+  --text-dim: #7c82a0;
+  color-scheme: light;
 }
 
 html { font-size: 15px; }
@@ -84,7 +108,7 @@ header {
   font-size: 0.65rem;
   font-weight: 600;
   background: var(--accent-glow);
-  color: #a78bfa;
+  color: var(--accent-text);
   border: 1px solid rgba(167, 139, 250, 0.3);
   padding: 0.1em 0.5em;
   border-radius: 99px;
@@ -92,6 +116,31 @@ header {
   letter-spacing: 0.05em;
   margin-left: auto;
 }
+
+/* ── Theme toggle ──────────────────────────────────────────────────────── */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all var(--transition);
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.theme-toggle:hover { border-color: var(--border2); background: var(--surface3); }
+
+.theme-toggle-icon.icon-sun { display: none; }
+.theme-toggle-icon.icon-moon { display: inline; }
+
+:root[data-theme="light"] .theme-toggle-icon.icon-sun { display: inline; }
+:root[data-theme="light"] .theme-toggle-icon.icon-moon { display: none; }
 
 /* ── Header nav (Website / Extension switcher) ────────────────────────────── */
 .header-nav {
@@ -122,7 +171,7 @@ header {
 }
 
 .header-nav-link.active {
-  color: #a78bfa;
+  color: var(--accent-text);
   background: var(--accent-glow);
   border-color: rgba(167, 139, 250, 0.3);
 }
@@ -366,7 +415,7 @@ select option { background: var(--surface2); }
 .checkbox-item input[type="checkbox"]:checked + label {
   background: var(--accent-glow);
   border-color: var(--accent);
-  color: #a78bfa;
+  color: var(--accent-text);
 }
 
 .checkbox-item label:hover {
@@ -606,7 +655,7 @@ select option { background: var(--surface2); }
 .tab:hover { color: var(--text-muted); background: var(--surface2); }
 
 .tab.active {
-  color: #a78bfa;
+  color: var(--accent-text);
   border-bottom-color: var(--accent);
   background: rgba(108, 99, 255, 0.07);
 }
@@ -620,7 +669,7 @@ select option { background: var(--surface2); }
 
 .tab-ext.yaml { background: rgba(34, 197, 94, 0.15); color: var(--green); }
 .tab-ext.env  { background: rgba(245, 158, 11, 0.15); color: var(--amber); }
-.tab-ext.md   { background: rgba(167, 139, 250, 0.15); color: #a78bfa; }
+.tab-ext.md   { background: rgba(167, 139, 250, 0.15); color: var(--accent-text); }
 
 /* ── Code view ─────────────────────────────────────────────────────────── */
 .code-pane {
@@ -665,7 +714,7 @@ select option { background: var(--surface2); }
   font-weight: 500;
 }
 
-.btn-copy:hover { border-color: var(--accent); color: #a78bfa; }
+.btn-copy:hover { border-color: var(--accent); color: var(--accent-text); }
 .btn-copy.copied { border-color: var(--green); color: var(--green); }
 
 .code-scroll {
@@ -674,6 +723,9 @@ select option { background: var(--surface2); }
   background: #0d1117;
 }
 
+/* Code panes always render on a fixed dark background (regardless of the
+   site theme), so the base/unhighlighted text color must stay fixed too —
+   otherwise it inherits --text and goes near-invisible in light mode. */
 .code-scroll pre {
   margin: 0;
   padding: 1.2rem 1.5rem;
@@ -682,6 +734,7 @@ select option { background: var(--surface2); }
   line-height: 1.65;
   white-space: pre;
   min-height: 100%;
+  color: #abb2bf;
 }
 
 .code-scroll pre code {
@@ -758,7 +811,7 @@ select option { background: var(--surface2); }
 .guide-pill {
   font-size: 0.78rem;
   font-weight: 600;
-  color: #a78bfa;
+  color: var(--accent-text);
   background: var(--accent-glow);
   border: 1px solid rgba(167, 139, 250, 0.3);
   padding: 0.35em 0.85em;
@@ -812,7 +865,7 @@ select option { background: var(--surface2); }
 .guide-card-link {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #a78bfa;
+  color: var(--accent-text);
   margin-top: 0.2rem;
 }
 
@@ -845,7 +898,7 @@ select option { background: var(--surface2); }
 .guide-flow-tab:hover { color: var(--text); border-color: var(--border2); }
 
 .guide-flow-tab.active {
-  color: #a78bfa;
+  color: var(--accent-text);
   background: var(--accent-glow);
   border-color: rgba(167, 139, 250, 0.3);
 }
@@ -919,7 +972,7 @@ select option { background: var(--surface2); }
   background: var(--surface2);
   padding: 0.1em 0.4em;
   border-radius: 4px;
-  color: #a78bfa;
+  color: var(--accent-text);
 }
 
 .guide-cta {
