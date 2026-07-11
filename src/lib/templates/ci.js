@@ -223,14 +223,14 @@ jobs:
 
 function getNodeVersion(projectType) {
   switch (projectType) {
-    case 'nextjs':        return '20';
-    case 'react':         return '20';
-    case 'nodejs':        return '20';
-    case 'nestjs':        return '20';
+    case 'nextjs':        return '24';
+    case 'react':         return '24';
+    case 'nodejs':        return '24';
+    case 'nestjs':        return '24';
     case 'shopify-theme': return '18';
-    case 'laravel':       return '20';
+    case 'laravel':       return '24';
     case 'wordpress':     return '18';
-    default:              return '20';
+    default:              return '24';
   }
 }
 

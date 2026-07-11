@@ -15,7 +15,7 @@ function generateExtensionCI(config) {
     buildTool = 'none',
   } = config;
 
-  const nodeVersion = '20';
+  const nodeVersion = '24';
   const pm = packageManager;
   const installCmd = getInstallCmd(pm);
   const runPrefix = pm === 'yarn' ? 'yarn' : pm === 'pnpm' ? 'pnpm' : 'npm run';

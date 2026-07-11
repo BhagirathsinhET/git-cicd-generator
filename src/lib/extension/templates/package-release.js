@@ -18,7 +18,7 @@ function generatePackageRelease(config) {
     checks = [],
   } = config;
 
-  const nodeVersion = '20';
+  const nodeVersion = '24';
   const pm = packageManager;
   const installCmd = getInstallCmd(pm);
   const runPrefix = pm === 'yarn' ? 'yarn' : pm === 'pnpm' ? 'pnpm' : 'npm run';
@@ -141,10 +141,7 @@ ${browserTargets.map((target) => `      - name: Download ${capitalize(target)} a
         with:
           tag_name: \${{ steps.version.outputs.version }}
           name: Release \${{ steps.version.outputs.version }}
-          body: |
-            ## What's Changed
-
-            \${{ steps.changelog.outputs.changelog }}
+          body: \`## What's Changed\n\n\${{ steps.changelog.outputs.changelog }}\`
           files: ${releaseAssets}
 `;
 }

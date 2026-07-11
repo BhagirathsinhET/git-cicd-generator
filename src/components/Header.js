@@ -37,6 +37,12 @@ export default function Header() {
         >
           📘 How It Works
         </Link>
+        <Link
+          href="/vercel-guide"
+          className={`header-nav-link ${pathname === '/vercel-guide' ? 'active' : ''}`}
+        >
+          🔺 Vercel Setup
+        </Link>
       </nav>
 
       <span className="logo-badge">GitHub Actions</span>

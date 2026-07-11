@@ -236,13 +236,12 @@ function buildDeploySteps({ deployTarget, environment, branchName }) {
       return `
       - name: Deploy to Vercel (${environment})
         id: deploy
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: \${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: \${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: \${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: '${environment === 'production' ? '--prod' : ''}'
-          scope: \${{ secrets.VERCEL_ORG_ID }}`;
+        run: |
+          DEPLOY_URL=$(npx vercel \${environment === 'production' ? '--prod ' : ''}--yes --token=\${{ secrets.VERCEL_TOKEN }})
+          echo "url=$DEPLOY_URL" >> $GITHUB_OUTPUT
+        env:
+          VERCEL_ORG_ID: \${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: \${{ secrets.VERCEL_PROJECT_ID }}`;
 
     case 'render':
       return `
