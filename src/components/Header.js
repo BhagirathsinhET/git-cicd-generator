@@ -38,10 +38,10 @@ export default function Header() {
           📘 How It Works
         </Link>
         <Link
-          href="/vercel-guide"
-          className={`header-nav-link ${pathname === '/vercel-guide' ? 'active' : ''}`}
+          href="/setup-guides"
+          className={`header-nav-link ${pathname?.startsWith('/setup-guides') ? 'active' : ''}`}
         >
-          🔺 Vercel Setup
+          📚 Setup Guides
         </Link>
       </nav>
 

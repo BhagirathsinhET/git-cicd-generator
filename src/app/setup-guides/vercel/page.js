@@ -91,8 +91,8 @@ export default function VercelGuidePage() {
         </section>
 
         <section className="guide-cta">
-          <Link href="/website" className="btn btn-primary">
-            🌐 Back to Generator
+          <Link href="/setup-guides" className="btn btn-primary">
+            📚 Back to Guides
           </Link>
         </section>
       </main>
