@@ -9,6 +9,7 @@ const { generateExtensionEnvExample } = require('./templates/env-example');
  * Main entry point for Chrome Extension CI/CD generation.
  * @param {object} config
  * @param {string} config.extensionFramework - vanilla | typescript | react | vue
+ * @param {string} config.nodeVersion        - Node.js version used in generated workflows
  * @param {string} config.packageManager     - npm | yarn | pnpm
  * @param {string} config.buildTool          - none | webpack | vite | parcel
  * @param {string[]} config.browserTargets   - chrome | firefox | edge (chrome always included)
@@ -21,6 +22,7 @@ const { generateExtensionEnvExample } = require('./templates/env-example');
 function generateExtensionWorkflows(config) {
   const normalised = {
     extensionFramework: config.extensionFramework || 'vanilla',
+    nodeVersion: config.nodeVersion || '24',
     packageManager: config.packageManager || 'npm',
     buildTool: config.buildTool || 'none',
     browserTargets: Array.isArray(config.browserTargets) && config.browserTargets.length > 0

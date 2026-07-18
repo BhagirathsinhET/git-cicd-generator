@@ -9,6 +9,7 @@ const { generateEnvExample } = require('./templates/env-example');
  * Main entry point.
  * @param {object} config
  * @param {string} config.projectType      - nextjs | react | nodejs | laravel | wordpress | shopify-theme | nestjs
+ * @param {string} config.nodeVersion      - Node.js version used in generated workflows
  * @param {string} config.packageManager   - npm | yarn | pnpm
  * @param {string} config.deployTarget     - vercel | render | aws | digitalocean | vps
  * @param {string} config.productionBranch - name of the branch that deploys to production (default: main)
@@ -22,6 +23,7 @@ function generateWorkflows(config) {
   // Normalise
   const normalised = {
     projectType: config.projectType || 'nodejs',
+    nodeVersion: config.nodeVersion || getDefaultNodeVersion(config.projectType),
     packageManager: config.packageManager || 'npm',
     deployTarget: config.deployTarget || 'vercel',
     productionBranch: config.productionBranch || 'main',
@@ -62,6 +64,10 @@ function generateWorkflows(config) {
   files['DEPLOYMENT_NOTES.md'] = generateDeploymentNotes(normalised);
 
   return files;
+}
+
+function getDefaultNodeVersion(projectType) {
+  return projectType === 'shopify-theme' || projectType === 'wordpress' ? '18' : '24';
 }
 
 /**

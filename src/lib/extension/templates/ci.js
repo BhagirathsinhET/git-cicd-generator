@@ -8,6 +8,7 @@
  */
 function generateExtensionCI(config) {
   const {
+    nodeVersion = '24',
     packageManager = 'npm',
     checks = [],
     productionBranch = 'main',
@@ -15,7 +16,6 @@ function generateExtensionCI(config) {
     buildTool = 'none',
   } = config;
 
-  const nodeVersion = '24';
   const pm = packageManager;
   const installCmd = getInstallCmd(pm);
   const runPrefix = pm === 'yarn' ? 'yarn' : pm === 'pnpm' ? 'pnpm' : 'npm run';

@@ -351,8 +351,25 @@ label .label-hint {
   color: var(--text-dim);
 }
 
-select, .checkbox-grid {
+select, .checkbox-grid, .field input[type="text"] {
   width: 100%;
+}
+
+.field input[type="text"] {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  padding: 0.6rem 0.9rem;
+  font-size: 0.88rem;
+  font-family: var(--mono);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.field input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
 select {

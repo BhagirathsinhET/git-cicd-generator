@@ -28,6 +28,10 @@ function isPhpProject(type) {
   return type === 'laravel' || type === 'wordpress';
 }
 
+function getDefaultNodeVersion(type) {
+  return type === 'shopify-theme' || type === 'wordpress' ? '18' : '24';
+}
+
 function escapeHtml(str) {
   return str
     .replace(/&/g, '&amp;')
@@ -38,6 +42,7 @@ function escapeHtml(str) {
 export default function Home() {
   // Form State
   const [projectType, setProjectType] = useState('nextjs');
+  const [nodeVersion, setNodeVersion] = useState('24');
   const [packageManager, setPackageManager] = useState('npm');
   const [deployTarget, setDeployTarget] = useState('vercel');
   const [productionBranch, setProductionBranch] = useState('main');
@@ -69,6 +74,7 @@ export default function Home() {
 
   const handleProjectTypeChange = (val) => {
     setProjectType(val);
+    setNodeVersion(getDefaultNodeVersion(val));
   };
 
   const handleCheckboxChange = (e) => {
@@ -94,6 +100,7 @@ export default function Home() {
 
     const config = {
       projectType,
+      nodeVersion: nodeVersion.trim(),
       packageManager: isPhpProject(projectType) ? 'npm' : packageManager,
       deployTarget,
       productionBranch: productionBranch.trim() || 'main',
@@ -138,6 +145,7 @@ export default function Home() {
 
   const handleReset = () => {
     setProjectType('nextjs');
+    setNodeVersion('24');
     setPackageManager('npm');
     setDeployTarget('vercel');
     setProductionBranch('main');
@@ -317,6 +325,21 @@ export default function Home() {
                       <option value="laravel">Laravel (PHP)</option>
                       <option value="wordpress">WordPress (PHP)</option>
                     </select>
+                  </div>
+
+                  {/* Node.js version */}
+                  <div className="field">
+                    <label htmlFor="nodeVersion">⬢ Node.js version</label>
+                    <input
+                      id="nodeVersion"
+                      name="nodeVersion"
+                      type="text"
+                      value={nodeVersion}
+                      onChange={(e) => setNodeVersion(e.target.value)}
+                      placeholder="e.g. 22 or 22.14.0"
+                      pattern="v?[0-9]+(\\.(?:[0-9]+|x)){0,2}"
+                      required
+                    />
                   </div>
 
                   {/* Package manager */}
