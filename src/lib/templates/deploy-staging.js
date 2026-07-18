@@ -23,7 +23,7 @@ function generateDeployStaging(config) {
   }
 
   const isPhp = projectType === 'laravel' || projectType === 'wordpress';
-  const nodeVersion = getNodeVersion(projectType);
+  const nodeVersion = getNodeVersion(config.nodeVersion, projectType);
   const pm = packageManager;
   const installCmd = getInstallCmd(pm);
   const runPrefix = pm === 'yarn' ? 'yarn' : pm === 'pnpm' ? 'pnpm' : 'npm run';

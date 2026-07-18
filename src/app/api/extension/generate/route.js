@@ -12,6 +12,13 @@ export async function POST(request) {
       );
     }
 
+    if (!isValidNodeVersion(config.nodeVersion)) {
+      return NextResponse.json(
+        { error: 'Node.js version must look like 22, 22.x, or 22.14.0' },
+        { status: 400 }
+      );
+    }
+
     const files = generateExtensionWorkflows(config);
     return NextResponse.json({ success: true, files });
   } catch (err) {
@@ -21,4 +28,8 @@ export async function POST(request) {
       { status: 500 }
     );
   }
+}
+
+function isValidNodeVersion(version) {
+  return typeof version === 'string' && /^v?\d+(?:\.(?:\d+|x)){0,2}$/.test(version.trim());
 }

@@ -10,6 +10,10 @@ const WEBSITE_STEPS = [
     desc: 'Choose Next.js, React, Node.js, NestJS, Shopify Theme, Laravel, or WordPress. This decides the language runtime (Node vs PHP) and tooling used in the generated workflow — e.g. Laravel/WordPress get a Composer + PHPUnit setup instead of a plain Node one.',
   },
   {
+    title: 'Set your Node.js version',
+    desc: 'Type the exact Node version your project needs (e.g. 22, 22.x, or 22.14.0) — it defaults to a sensible version per project type, but you can override it. This is passed straight to actions/setup-node in every generated workflow.',
+  },
+  {
     title: 'Pick a package manager',
     desc: 'npm, yarn, or pnpm. Skipped automatically for PHP projects (Laravel/WordPress), which only need npm for asset compilation.',
   },
@@ -51,6 +55,10 @@ const EXTENSION_STEPS = [
   {
     title: 'Pick your extension framework',
     desc: 'Vanilla JavaScript, TypeScript, React, or Vue — informs the notes and assumptions in the generated docs.',
+  },
+  {
+    title: 'Set your Node.js version',
+    desc: 'Type the exact Node version your project needs (e.g. 22, 22.x, or 22.14.0) — defaults to 24. This is passed straight to actions/setup-node in ci.yml, package-release.yml, and publish-store.yml.',
   },
   {
     title: 'Pick a package manager',

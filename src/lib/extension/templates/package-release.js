@@ -11,6 +11,7 @@ const { getInstallCmd } = require('./ci');
  */
 function generatePackageRelease(config) {
   const {
+    nodeVersion = '24',
     packageManager = 'npm',
     buildTool = 'none',
     browserTargets = ['chrome'],
@@ -18,7 +19,6 @@ function generatePackageRelease(config) {
     checks = [],
   } = config;
 
-  const nodeVersion = '24';
   const pm = packageManager;
   const installCmd = getInstallCmd(pm);
   const runPrefix = pm === 'yarn' ? 'yarn' : pm === 'pnpm' ? 'pnpm' : 'npm run';

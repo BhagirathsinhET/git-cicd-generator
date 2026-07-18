@@ -32,6 +32,7 @@ function escapeHtml(str) {
 export default function ExtensionPage() {
   // Form State
   const [extensionFramework, setExtensionFramework] = useState('vanilla');
+  const [nodeVersion, setNodeVersion] = useState('24');
   const [packageManager, setPackageManager] = useState('npm');
   const [buildTool, setBuildTool] = useState('none');
   const [browserTargets, setBrowserTargets] = useState(['chrome']);
@@ -85,6 +86,7 @@ export default function ExtensionPage() {
 
     const config = {
       extensionFramework,
+      nodeVersion: nodeVersion.trim(),
       packageManager,
       buildTool,
       browserTargets,
@@ -128,6 +130,7 @@ export default function ExtensionPage() {
 
   const handleReset = () => {
     setExtensionFramework('vanilla');
+    setNodeVersion('24');
     setPackageManager('npm');
     setBuildTool('none');
     setBrowserTargets(['chrome']);
@@ -295,6 +298,21 @@ export default function ExtensionPage() {
                       <option value="react">React</option>
                       <option value="vue">Vue</option>
                     </select>
+                  </div>
+
+                  {/* Node.js version */}
+                  <div className="field">
+                    <label htmlFor="nodeVersion">⬢ Node.js version</label>
+                    <input
+                      id="nodeVersion"
+                      name="nodeVersion"
+                      type="text"
+                      value={nodeVersion}
+                      onChange={(e) => setNodeVersion(e.target.value)}
+                      placeholder="e.g. 22 or 22.14.0"
+                      pattern="v?[0-9]+(\\.(?:[0-9]+|x)){0,2}"
+                      required
+                    />
                   </div>
 
                   {/* Package manager */}

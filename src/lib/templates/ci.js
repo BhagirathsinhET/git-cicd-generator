@@ -18,7 +18,7 @@ function generateCI(config) {
   } = config;
 
   const isPhp = projectType === 'laravel' || projectType === 'wordpress';
-  const nodeVersion = getNodeVersion(projectType);
+  const nodeVersion = getNodeVersion(config.nodeVersion, projectType);
   const pm = packageManager;
   const installCmd = getInstallCmd(pm);
   const runPrefix = pm === 'yarn' ? 'yarn' : pm === 'pnpm' ? 'pnpm' : 'npm run';
@@ -221,7 +221,9 @@ jobs:
 `;
 }
 
-function getNodeVersion(projectType) {
+function getNodeVersion(nodeVersion, projectType) {
+  if (nodeVersion) return nodeVersion;
+
   switch (projectType) {
     case 'nextjs':        return '24';
     case 'react':         return '24';
